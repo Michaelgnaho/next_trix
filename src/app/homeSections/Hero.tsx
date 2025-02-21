@@ -1,6 +1,6 @@
-// HeroSection.js
 "use client";
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import Navbar from "./Navbar"; // Adjust the import path as necessary
 
 const HeroSection = () => {
@@ -17,15 +17,6 @@ const HeroSection = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "Home", href: "#" },
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Blog", href: "#blog" },
-    { name: "Contact", href: "#contact" },
-  ];
-
   return (
     <div
       className={`min-h-screen ${isDarkMode ? "dark bg-gray-900" : "bg-white"}`}
@@ -37,15 +28,14 @@ const HeroSection = () => {
         setIsMobileMenuOpen={setIsMobileMenuOpen}
         isDarkMode={isDarkMode}
         setIsDarkMode={setIsDarkMode}
-        // navLinks={navLinks}
       />
 
       {/* Hero Section */}
       <div className="relative pt-16">
         {/* Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-yellow-200 rounded-full opacity-20 blur-3xl animate-pulse"></div>
-          <div className="absolute top-40 -left-40 w-80 h-80 bg-blue-200 rounded-full opacity-20 blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-yellow-200 rounded-full opacity-20 blur-3xl animate-pulse" />
+          <div className="absolute top-40 -left-40 w-80 h-80 bg-blue-200 rounded-full opacity-20 blur-3xl animate-pulse delay-1000" />
         </div>
 
         {/* Content */}
@@ -63,10 +53,16 @@ const HeroSection = () => {
               customers, and elevate your brand in the digital landscape.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-delay-2">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full text-lg font-semibold transition-all transform hover:scale-105">
+              <button
+                type="button"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full text-lg font-semibold transition-all transform hover:scale-105"
+              >
                 Get Free Consultation
               </button>
-              <button className="bg-transparent border-2 border-blue-600 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 px-8 py-3 rounded-full text-lg font-semibold transition-all">
+              <button
+                type="button"
+                className="bg-transparent border-2 border-blue-600 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 px-8 py-3 rounded-full text-lg font-semibold transition-all"
+              >
                 View Portfolio
               </button>
             </div>
@@ -74,14 +70,15 @@ const HeroSection = () => {
 
           {/* Hero Image */}
           <div className="mt-12 flex justify-center animate-fade-in-up">
-            <div className="relative w-full max-w-4xl">
-              <div className="aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-2xl">
-                <img
-                  src="https://i.pinimg.com/736x/cb/3c/ef/cb3cefbcba842dc7a34c0dfafcf38858.jpg"
-                  alt="Digital Agency Dashboard"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+            <div className="relative w-full max-w-4xl aspect-w-16 aspect-h-9 rounded-xl overflow-hidden shadow-2xl">
+              <Image
+                src="https://i.pinimg.com/736x/cb/3c/ef/cb3cefbcba842dc7a34c0dfafcf38858.jpg"
+                alt="Digital Agency Dashboard Preview"
+                layout="responsive"
+                width={1280}
+                height={720}
+                className="object-cover"
+              />
             </div>
           </div>
         </div>

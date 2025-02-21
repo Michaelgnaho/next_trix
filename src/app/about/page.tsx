@@ -1,10 +1,10 @@
 "use client";
 
-import React, { use } from "react";
+import React from "react";
 import { Linkedin, Twitter, Mail, Target, Eye, Heart } from "lucide-react";
 import Navbar from "../homeSections/Navbar";
 import { useState, useEffect } from "react";
-import { ArrowRight } from "lucide-react";
+import Image from "next/image"; // Added for image optimization
 
 const AboutSection = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -20,14 +20,6 @@ const AboutSection = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "Home", href: "#" },
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Blog", href: "#blog" },
-    { name: "Contact", href: "#contact" },
-  ];
   const teamMembers = [
     {
       name: "Sarah Johnson",
@@ -102,11 +94,9 @@ const AboutSection = () => {
         setIsMobileMenuOpen={setIsMobileMenuOpen}
         isDarkMode={isDarkMode}
         setIsDarkMode={setIsDarkMode}
-        // navLinks={navLinks}
-      />{" "}
+      />
       <section className="relative py-20 overflow-hidden bg-white dark:bg-gray-900">
         {/* Background Elements */}
-
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-yellow-100 dark:bg-yellow-900/20 rounded-full blur-3xl opacity-30 transform translate-x-1/2 -translate-y-1/2"></div>
           <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-blue-100 dark:bg-blue-900/20 rounded-full blur-3xl opacity-30 transform -translate-x-1/2 translate-y-1/2"></div>
@@ -118,7 +108,7 @@ const AboutSection = () => {
               Building Digital Success Together
             </h2>
             <p className="max-w-3xl mx-auto text-lg text-gray-600 dark:text-gray-300">
-              We're a team of passionate digital innovators, committed to
+              We&apos;re a team of passionate digital innovators, committed to
               transforming businesses through cutting-edge technology and
               creative excellence. Our collaborative approach ensures your
               success in the digital landscape.
@@ -157,9 +147,11 @@ const AboutSection = () => {
                   style={{ animationDelay: `${index * 200}ms` }}
                 >
                   <div className="relative overflow-hidden rounded-xl aspect-square">
-                    <img
+                    <Image
                       src={member.image}
                       alt={member.name}
+                      width={300}
+                      height={300}
                       className="w-full h-full object-cover transition-transform group-hover:scale-110"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-center p-6">

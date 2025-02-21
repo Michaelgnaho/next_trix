@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   Card,
@@ -14,10 +14,9 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
-import { Calendar, Clock } from "lucide-react";
+import { Calendar, Clock, ArrowRight } from "lucide-react";
 import Navbar from "../homeSections/Navbar";
-import { useEffect } from "react";
-import { ArrowRight } from "lucide-react";
+import Image from "next/image"; // Added for image optimization
 
 // Sample blog data - in a real app, this would come from your CMS
 const blogPosts = [
@@ -40,7 +39,7 @@ const blogPosts = [
   },
   {
     id: 2,
-    title: "The Future of Web Development: What's Next?",
+    title: "The Future of Web Development: What&apos;s Next?",
     description:
       "Exploring emerging trends and technologies shaping the future of web development.",
     category: "Web Development",
@@ -62,9 +61,6 @@ const categories = ["All", "SEO", "Web Development", "Social Media", "PPC"];
 
 const BlogSection = () => {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [currentPage, setCurrentPage] = useState(1);
-  const postsPerPage = 6;
-
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -77,15 +73,6 @@ const BlogSection = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const navLinks = [
-    { name: "Home", href: "#" },
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Blog", href: "#blog" },
-    { name: "Contact", href: "#contact" },
-  ];
 
   const filteredPosts =
     activeCategory === "All"
@@ -104,17 +91,13 @@ const BlogSection = () => {
   };
 
   return (
-    <div
-    //   className={`min-h-screen ${isDarkMode ? "bg-white" : "dark bg-gray-900"}`}
-    >
-      {/* Navigation Bar */}
+    <div>
       <Navbar
         isScrolled={isScrolled}
         isMobileMenuOpen={isMobileMenuOpen}
         setIsMobileMenuOpen={setIsMobileMenuOpen}
         isDarkMode={isDarkMode}
         setIsDarkMode={setIsDarkMode}
-        // navLinks={navLinks}
       />
       <section className="w-full py-16 bg-gradient-to-b from-white to-blue-50">
         <div className="container mx-auto px-4">
@@ -147,7 +130,7 @@ const BlogSection = () => {
               <Card className="overflow-hidden hover:shadow-xl transition-all duration-300">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="overflow-hidden">
-                    <img
+                    <Image
                       src={featuredPost.image}
                       alt={featuredPost.title}
                       className="w-full h-full object-cover"
@@ -235,7 +218,7 @@ const BlogSection = () => {
               >
                 <Card className="h-full flex flex-col hover:shadow-xl transition-all duration-300">
                   <div className="overflow-hidden">
-                    <img
+                    <Image
                       src={post.image}
                       alt={post.title}
                       className="w-full h-48 object-cover transform hover:scale-105 transition-transform duration-300"
@@ -314,6 +297,7 @@ const BlogSection = () => {
           </motion.div>
         </div>
       </section>
+      {/* Rest of your JSX remains the same */}
     </div>
   );
 };

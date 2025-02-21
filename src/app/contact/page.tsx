@@ -1,13 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { useForm, FieldValues } from "react-hook-form";
+import type { FieldValues } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowRight } from "lucide-react";
 import {
   MapPin,
   Phone,
@@ -19,32 +19,29 @@ import {
   SendHorizontal,
   CheckCircle,
 } from "lucide-react";
-import { useState, useEffect } from "react";
-import { div } from "framer-motion/client";
 import Navbar from "../homeSections/Navbar";
 
-const ContactSection = () => {
+const socialLinks = [
+  { icon: Linkedin, href: "#" },
+  { icon: Twitter, href: "#" },
+  { icon: Facebook, href: "#" },
+  { icon: Instagram, href: "#" },
+] as const;
+
+const ContactSection: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // Handle scroll effect for navbar
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "Home", href: "#" },
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Blog", href: "#blog" },
-    { name: "Contact", href: "#contact" },
-  ];
   const {
     register,
     handleSubmit,
@@ -64,10 +61,8 @@ const ContactSection = () => {
         setIsMobileMenuOpen={setIsMobileMenuOpen}
         isDarkMode={isDarkMode}
         setIsDarkMode={setIsDarkMode}
-        // navLinks={navLinks}
       />
       <section className="w-full py-16 bg-gradient-to-b from-white to-blue-50 relative overflow-hidden">
-        {/* Decorative background elements */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 left-0 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply opacity-10 animate-blob" />
           <div className="absolute top-0 right-0 w-72 h-72 bg-yellow-100 rounded-full mix-blend-multiply opacity-10 animate-blob animation-delay-2000" />
@@ -75,7 +70,6 @@ const ContactSection = () => {
         </div>
 
         <div className="container mx-auto px-4 relative">
-          {/* Header Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -84,7 +78,7 @@ const ContactSection = () => {
             className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl font-bold text-blue-900 mb-4">
-              Let's Work Together
+              Let&apos;s Work Together
             </h2>
             <p className="text-lg text-blue-600 max-w-2xl mx-auto">
               Ready to transform your digital presence? Reach out to discuss
@@ -94,7 +88,6 @@ const ContactSection = () => {
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8 items-start">
-            {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -113,11 +106,9 @@ const ContactSection = () => {
                           })}
                           className="bg-white"
                         />
-                        {errors.name && (
+                        {errors.name?.message && (
                           <span className="text-sm text-red-500 mt-1">
-                            {errors.name.message &&
-                              typeof errors.name.message === "string" &&
-                              errors.name.message}
+                            {errors.name.message.toString()}
                           </span>
                         )}
                       </div>
@@ -135,11 +126,9 @@ const ContactSection = () => {
                           })}
                           className="bg-white"
                         />
-                        {errors.email && (
+                        {errors.email?.message && (
                           <span className="text-sm text-red-500 mt-1">
-                            {errors.email.message &&
-                              typeof errors.email.message === "string" &&
-                              errors.email.message}
+                            {errors.email.message.toString()}
                           </span>
                         )}
                       </div>
@@ -161,11 +150,9 @@ const ContactSection = () => {
                           })}
                           className="min-h-[150px] bg-white"
                         />
-                        {errors.message && (
+                        {errors.message?.message && (
                           <span className="text-sm text-red-500 mt-1">
-                            {errors.message.message &&
-                              typeof errors.message.message === "string" &&
-                              errors.message.message}
+                            {errors.message.message.toString()}
                           </span>
                         )}
                       </div>
@@ -193,7 +180,6 @@ const ContactSection = () => {
               </Card>
             </motion.div>
 
-            {/* Contact Information */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -254,12 +240,7 @@ const ContactSection = () => {
                       Follow Us
                     </h4>
                     <div className="flex gap-4">
-                      {[
-                        { icon: Linkedin, href: "#" },
-                        { icon: Twitter, href: "#" },
-                        { icon: Facebook, href: "#" },
-                        { icon: Instagram, href: "#" },
-                      ].map((social, index) => (
+                      {socialLinks.map((social, index) => (
                         <a
                           key={index}
                           href={social.href}
@@ -273,7 +254,6 @@ const ContactSection = () => {
                 </CardContent>
               </Card>
 
-              {/* Google Maps Embed */}
               <Card className="overflow-hidden">
                 <div className="w-full h-[300px] bg-gray-200">
                   <iframe
@@ -289,7 +269,6 @@ const ContactSection = () => {
             </motion.div>
           </div>
 
-          {/* CTA Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

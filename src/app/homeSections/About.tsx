@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
 const AboutSection = () => {
@@ -30,66 +31,26 @@ const AboutSection = () => {
               solutions.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <div className="flex items-start space-x-3">
-                <div className="flex-shrink-0 w-6 h-6 text-blue-600 dark:text-blue-400 mt-1">
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
+              {[
+                "Expert team of digital specialists",
+                "Customized digital strategies",
+                "Proven track record of success",
+                "Innovation-driven solutions",
+              ].map((text, index) => (
+                <div key={index} className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-6 h-6 text-blue-600 dark:text-blue-400 mt-1">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <p className="text-gray-600 dark:text-gray-300">{text}</p>
                 </div>
-                <p className="text-gray-600 dark:text-gray-300">
-                  Expert team of digital specialists
-                </p>
-              </div>
-              <div className="flex items-start space-x-3">
-                <div className="flex-shrink-0 w-6 h-6 text-blue-600 dark:text-blue-400 mt-1">
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-                <p className="text-gray-600 dark:text-gray-300">
-                  Customized digital strategies
-                </p>
-              </div>
-              <div className="flex items-start space-x-3">
-                <div className="flex-shrink-0 w-6 h-6 text-blue-600 dark:text-blue-400 mt-1">
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-                <p className="text-gray-600 dark:text-gray-300">
-                  Proven track record of success
-                </p>
-              </div>
-              <div className="flex items-start space-x-3">
-                <div className="flex-shrink-0 w-6 h-6 text-blue-600 dark:text-blue-400 mt-1">
-                  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                </div>
-                <p className="text-gray-600 dark:text-gray-300">
-                  Innovation-driven solutions
-                </p>
-              </div>
+              ))}
             </div>
             <Link
               href="/about"
@@ -102,9 +63,11 @@ const AboutSection = () => {
 
           {/* Image Column */}
           <div className="flex lg:block">
-            <img
-              src="https://i.pinimg.com/736x/f2/c1/6d/f2c16da83eee4535a81cedfac124a435.jpg" // Replace with your image path
+            <Image
+              src="https://i.pinimg.com/736x/f2/c1/6d/f2c16da83eee4535a81cedfac124a435.jpg"
               alt="About Us"
+              width={600}
+              height={400}
               className="w-full h-auto rounded-lg shadow-lg"
             />
           </div>

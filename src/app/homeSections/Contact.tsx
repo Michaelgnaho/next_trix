@@ -19,9 +19,9 @@ const ContactSection = () => {
             Ready to Get Started?
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-            Let's discuss your project and explore how we can help transform
-            your digital presence. Our team is ready to bring your vision to
-            life.
+            Let&apos;s discuss your project and explore how we can help
+            transform your digital presence. Our team is ready to bring your
+            vision to life.
           </p>
           <Link
             href="/contact"

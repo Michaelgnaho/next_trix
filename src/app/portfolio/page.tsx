@@ -10,8 +10,9 @@ import {
 } from "@/components/ui/card";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import Navbar from "../homeSections/Navbar";
+import Image from "next/image";
 
 // Sample project data
 const projects = [
@@ -51,8 +52,8 @@ const PortfolioSection = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("All");
 
-  // Handle scroll effect for navbar
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -60,17 +61,6 @@ const PortfolioSection = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  const navLinks = [
-    { name: "Home", href: "#" },
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Portfolio", href: "#portfolio" },
-    { name: "Blog", href: "#blog" },
-    { name: "Contact", href: "#contact" },
-  ];
-
-  const [activeCategory, setActiveCategory] = useState("All");
 
   const filteredProjects =
     activeCategory === "All"
@@ -85,7 +75,6 @@ const PortfolioSection = () => {
         setIsMobileMenuOpen={setIsMobileMenuOpen}
         isDarkMode={isDarkMode}
         setIsDarkMode={setIsDarkMode}
-        // navLinks={navLinks}
       />
       <section
         className={`w-full py-16 ${
@@ -174,7 +163,7 @@ const PortfolioSection = () => {
                   }`}
                 >
                   <div className="overflow-hidden">
-                    <img
+                    <Image
                       src={project.image}
                       alt={project.title}
                       className="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300"
@@ -244,7 +233,7 @@ const PortfolioSection = () => {
               }`}
             >
               See All Projects
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <ExternalLink className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </motion.div>
         </div>
