@@ -87,15 +87,15 @@ const FooterSection = () => {
 
         {/* Newsletter Subscription */}
         <div className="border-t border-gray-200 dark:border-gray-700 pt-8 pb-12">
-          <div className="max-w-2xl">
+          <div className=" max-w-2xl">
             <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
               Subscribe to our newsletter
             </h4>
-            <div className="flex gap-4">
+            <div className="flex-col  md:flex gap-4">
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-2 rounded-full border-2 border-gray-200 dark:border-gray-700 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:border-blue-600"
+                className="flex-1 px-4 py-2 my-2 rounded-full border-2 border-gray-200 dark:border-gray-700 bg-transparent text-gray-900 dark:text-white focus:outline-none focus:border-blue-600"
               />
               <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full font-semibold transition-all transform hover:scale-105">
                 Subscribe

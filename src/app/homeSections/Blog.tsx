@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Clock, User } from "lucide-react";
+import AnimatedContent from "../Animations/AnimatedContext";
 
 const BlogSection = () => {
   const blogPosts = [
@@ -46,15 +47,17 @@ const BlogSection = () => {
   return (
     <section className="relative py-16 lg:py-24 overflow-hidden">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Latest Insights & Updates
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            Stay up to date with the latest trends, tips, and strategies in the
-            digital world.
-          </p>
-        </div>
+        <AnimatedContent>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              Latest Insights & Updates
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+              Stay up to date with the latest trends, tips, and strategies in
+              the digital world.
+            </p>
+          </div>
+        </AnimatedContent>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {blogPosts.map((post) => (
@@ -62,42 +65,44 @@ const BlogSection = () => {
               key={post.id}
               className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow"
             >
-              <div className="relative w-full h-48">
-                <Image
-                  src={post.image}
-                  alt={post.title}
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-t-xl"
-                />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
-                  <Clock className="w-4 h-4 mr-1" />
-                  <span>{post.readTime}</span>
-                  <span className="mx-2">•</span>
-                  <span>{post.date}</span>
+              <AnimatedContent>
+                <div className="relative w-full h-48">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    layout="fill"
+                    objectFit="cover"
+                    className="rounded-t-xl"
+                  />
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                  {post.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  {post.excerpt}
-                </p>
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
-                    <User className="w-4 h-4 mr-2" />
-                    <span>{post.author}</span>
+                <div className="p-6">
+                  <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-4">
+                    <Clock className="w-4 h-4 mr-1" />
+                    <span>{post.readTime}</span>
+                    <span className="mx-2">•</span>
+                    <span>{post.date}</span>
                   </div>
-                  <Link
-                    href={`/blog/${post.id}`}
-                    className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 inline-flex items-center"
-                  >
-                    <span>Read more</span>
-                    <ArrowRight className="w-4 h-4 ml-1" />
-                  </Link>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                    {post.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4">
+                    {post.excerpt}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
+                      <User className="w-4 h-4 mr-2" />
+                      <span>{post.author}</span>
+                    </div>
+                    <Link
+                      href={`/blog/${post.id}`}
+                      className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 inline-flex items-center"
+                    >
+                      <span>Read more</span>
+                      <ArrowRight className="w-4 h-4 ml-1" />
+                    </Link>
+                  </div>
                 </div>
-              </div>
+              </AnimatedContent>
             </article>
           ))}
         </div>

@@ -4,7 +4,7 @@ const nextConfig: NextConfig = {
   images: {
     domains: ["i.pinimg.com"],
   },
-  /* config options here */
+  reactStrictMode: true, // Enable strict mode
 };
 
 export default nextConfig;
