@@ -2,17 +2,31 @@
 
 import Sidebar from "../Sidebar";
 import DashboardHeader from "../DashboardHeader";
-import { FaUser, Cog, FaLock, FaEnvelope, FaBell, FaSave } from "react-icons/fa";
+import { FaUser, FaLock, FaEnvelope, FaBell, FaSave } from "react-icons/fa";
 
-const SettingCard = ({ icon, title, description }) => (
+interface SettingCardProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}
+
+const SettingCard: React.FC<SettingCardProps> = ({
+  icon,
+  title,
+  description,
+}) => (
   <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-4 sm:p-6 transition-all hover:shadow-lg">
     <div className="flex items-center space-x-3 sm:space-x-4">
       <div className="text-blue-600 dark:text-blue-400 text-xl sm:text-2xl">
         {icon}
       </div>
       <div>
-        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">{title}</h3>
-        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">{description}</p>
+        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
+          {title}
+        </h3>
+        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">
+          {description}
+        </p>
       </div>
     </div>
   </div>
@@ -21,7 +35,7 @@ const SettingCard = ({ icon, title, description }) => (
 export default function SettingsDashboard() {
   const settingsOptions = [
     {
-      icon: <FaUser Cog />,
+      icon: <FaUser />,
       title: "Profile Settings",
       description: "Manage your personal information and preferences.",
     },
@@ -53,7 +67,7 @@ export default function SettingsDashboard() {
         <Sidebar />
         <div className="flex-1 flex flex-col">
           <DashboardHeader userName="Michael" userRole="Project Manager" />
-          
+
           <main className="flex-1 p-4 sm:p-6">
             {/* Settings Options Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6">

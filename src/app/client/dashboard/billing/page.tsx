@@ -2,38 +2,54 @@
 
 import Sidebar from "../Sidebar";
 import DashboardHeader from "../DashboardHeader";
-import { 
-  FaCreditCard, 
-  FaFileInvoiceDollar, 
-  FaChartLine, 
+import {
+  FaCreditCard,
+  FaFileInvoiceDollar,
+  FaChartLine,
   FaExclamationCircle,
-  FaUserCircle,
-  FaDownload,
-  FaCircle
+  FaCircle,
 } from "react-icons/fa";
 
-const StatCard = ({ icon, title, value, description }) => (
+interface StatCardProps {
+  icon: React.ReactNode;
+  title: string;
+  value: string;
+  description?: string;
+}
+
+const StatCard = ({ icon, title, value }: StatCardProps) => (
   <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-4 sm:p-6 transition-all hover:shadow-lg">
     <div className="flex items-center space-x-3 sm:space-x-4">
       <div className="text-blue-600 dark:text-blue-400 text-xl sm:text-2xl">
         {icon}
       </div>
       <div>
-        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">{value}</h3>
-        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">{title}</p>
+        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
+          {value}
+        </h3>
+        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">
+          {title}
+        </p>
       </div>
     </div>
   </div>
 );
 
-const InvoiceCard = ({ invoice }) => (
+interface Invoice {
+  number: string;
+  amount: string;
+  date: string;
+  status: "paid" | "pending" | "overdue";
+}
+
+const InvoiceCard = ({ invoice }: { invoice: Invoice }) => (
   <div className="flex items-start space-x-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-lg transition-colors cursor-pointer">
     <div className="relative">
       <FaFileInvoiceDollar className="text-gray-400 text-3xl" />
-      {invoice.status === 'paid' && (
+      {invoice.status === "paid" && (
         <FaCircle className="absolute bottom-0 right-0 text-green-500 text-xs" />
       )}
-      {invoice.status === 'overdue' && (
+      {invoice.status === "overdue" && (
         <FaCircle className="absolute bottom-0 right-0 text-red-500 text-xs" />
       )}
     </div>
@@ -50,11 +66,15 @@ const InvoiceCard = ({ invoice }) => (
         <p className="text-sm text-gray-600 dark:text-gray-300">
           ${invoice.amount}
         </p>
-        <span className={`text-xs px-2 py-1 rounded-full ${
-          invoice.status === 'paid' ? 'bg-green-100 text-green-800' :
-          invoice.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-          'bg-red-100 text-red-800'
-        }`}>
+        <span
+          className={`text-xs px-2 py-1 rounded-full ${
+            invoice.status === "paid"
+              ? "bg-green-100 text-green-800"
+              : invoice.status === "pending"
+              ? "bg-yellow-100 text-yellow-800"
+              : "bg-red-100 text-red-800"
+          }`}
+        >
           {invoice.status.charAt(0).toUpperCase() + invoice.status.slice(1)}
         </span>
       </div>
@@ -83,7 +103,7 @@ export default function BillingDashboard() {
       icon: <FaExclamationCircle />,
       title: "Overdue",
       value: "$1,556",
-    }
+    },
   ];
 
   const recentInvoices = [
@@ -91,20 +111,20 @@ export default function BillingDashboard() {
       number: "INV-2024-001",
       amount: "2,450.00",
       date: "Today",
-      status: "pending"
+      status: "pending" as const,
     },
     {
       number: "INV-2024-002",
       amount: "1,875.00",
       date: "Yesterday",
-      status: "paid"
+      status: "paid" as const,
     },
     {
       number: "INV-2024-003",
       amount: "3,240.00",
       date: "Mar 22, 2024",
-      status: "overdue"
-    }
+      status: "overdue" as const,
+    },
   ];
 
   const upcomingPayments = [
@@ -112,14 +132,14 @@ export default function BillingDashboard() {
       number: "INV-2024-004",
       amount: "1,280.00",
       date: "Due Mar 28, 2024",
-      status: "pending"
+      status: "pending" as const,
     },
     {
       number: "INV-2024-005",
       amount: "2,850.00",
       date: "Due Mar 30, 2024",
-      status: "pending"
-    }
+      status: "pending" as const,
+    },
   ];
 
   return (
@@ -128,7 +148,7 @@ export default function BillingDashboard() {
         <Sidebar />
         <div className="flex-1 flex flex-col">
           <DashboardHeader userName="Michael" userRole="Finance Manager" />
-          
+
           <main className="flex-1 p-4 sm:p-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6">
               {stats.map((stat, index) => (

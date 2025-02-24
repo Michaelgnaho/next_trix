@@ -2,31 +2,50 @@
 
 import Sidebar from "../Sidebar";
 import DashboardHeader from "../DashboardHeader";
-import { 
-  FaEnvelope, 
-  FaEnvelopeOpen, 
-  FaUsers, 
+import {
+  FaEnvelope,
+  FaEnvelopeOpen,
+  FaUsers,
   FaArchive,
   FaUserCircle,
   FaPaperclip,
-  FaCircle
+  FaCircle,
 } from "react-icons/fa";
 
-const StatCard = ({ icon, title, value, description }) => (
+interface StatCardProps {
+  icon: React.ReactNode;
+  title: string;
+  value: string;
+  description?: string;
+}
+
+const StatCard: React.FC<StatCardProps> = ({ icon, title, value }) => (
   <div className="bg-white dark:bg-gray-800 rounded-lg shadow p-4 sm:p-6 transition-all hover:shadow-lg">
     <div className="flex items-center space-x-3 sm:space-x-4">
       <div className="text-blue-600 dark:text-blue-400 text-xl sm:text-2xl">
         {icon}
       </div>
       <div>
-        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">{value}</h3>
-        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">{title}</p>
+        <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white">
+          {value}
+        </h3>
+        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300">
+          {title}
+        </p>
       </div>
     </div>
   </div>
 );
 
-const MessageCard = ({ message }) => (
+interface Message {
+  sender: string;
+  preview: string;
+  time: string;
+  online: boolean;
+  hasAttachment: boolean;
+}
+
+const MessageCard: React.FC<{ message: Message }> = ({ message }) => (
   <div className="flex items-start space-x-4 p-4 hover:bg-gray-50 dark:hover:bg-gray-700/50 rounded-lg transition-colors cursor-pointer">
     <div className="relative">
       <FaUserCircle className="text-gray-400 text-3xl" />
@@ -72,31 +91,32 @@ export default function MessageDashboard() {
       icon: <FaArchive />,
       title: "Archived",
       value: "24",
-    }
+    },
   ];
 
   const recentMessages = [
     {
       sender: "Sarah Johnson",
-      preview: "Hi, I've reviewed the project proposal and have some feedback...",
+      preview:
+        "Hi, I've reviewed the project proposal and have some feedback...",
       time: "2m ago",
       online: true,
-      hasAttachment: false
+      hasAttachment: false,
     },
     {
       sender: "Development Team",
       preview: "Updated: Latest build files attached for review",
       time: "45m ago",
       online: true,
-      hasAttachment: true
+      hasAttachment: true,
     },
     {
       sender: "Client Meeting",
       preview: "Meeting notes and action items from today's call",
       time: "2h ago",
       online: false,
-      hasAttachment: true
-    }
+      hasAttachment: true,
+    },
   ];
 
   const pinnedChats = [
@@ -105,15 +125,15 @@ export default function MessageDashboard() {
       preview: "Weekly sync-up discussion and updates",
       time: "1d ago",
       online: true,
-      hasAttachment: false
+      hasAttachment: false,
     },
     {
       sender: "Design Team",
       preview: "New UI mockups for the dashboard redesign",
       time: "2d ago",
       online: false,
-      hasAttachment: true
-    }
+      hasAttachment: true,
+    },
   ];
 
   return (
@@ -122,7 +142,7 @@ export default function MessageDashboard() {
         <Sidebar />
         <div className="flex-1 flex flex-col">
           <DashboardHeader userName="Michael" userRole="Project Manager" />
-          
+
           <main className="flex-1 p-4 sm:p-6">
             {/* Stats Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6">
