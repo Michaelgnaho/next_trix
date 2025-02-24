@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Navbar from "./Navbar"; // Adjust the import path as necessary
+import Link from "next/link";
 
 const HeroSection = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -53,17 +54,20 @@ const HeroSection = () => {
               customers, and elevate your brand in the digital landscape.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-delay-2">
-              <button
-                type="button"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full text-lg font-semibold transition-all transform hover:scale-105"
-              >
-                Get Free Consultation
-              </button>
+              <Link href="/client/register">
+                <button
+                  type="button"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-full text-lg font-semibold transition-all transform hover:scale-105"
+                >
+                  Get Free Consultation
+                </button>
+              </Link>
+
               <button
                 type="button"
                 className="bg-transparent border-2 border-blue-600 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-900/30 px-8 py-3 rounded-full text-lg font-semibold transition-all"
               >
-                View Portfolio
+                <a href="#portfolio">View Portfolio</a> 
               </button>
             </div>
           </div>

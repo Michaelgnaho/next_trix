@@ -13,6 +13,8 @@ import {
 import { ArrowRight } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
+import Logo from "../../assets/logo.jpg";
 
 interface NavLink {
   name: string;
@@ -74,12 +76,7 @@ const Navbar: React.FC<NavbarProps> = ({
             href="/"
             className="flex-shrink-0 flex items-center space-x-2 group"
           >
-            <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform">
-              <span className="text-2xl font-bold text-white">N</span>
-            </div>
-            <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-              Net-Trix
-            </span>
+            <Image src={Logo} alt="Net-Trix" className="w-20 h-16" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -99,9 +96,9 @@ const Navbar: React.FC<NavbarProps> = ({
               </Link>
             ))}
             <div className="h-6 w-px bg-gray-200 dark:bg-gray-700 mx-2" />
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-all transform hover:scale-105 hover:shadow-lg">
+            <Link href="/client/register" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-all transform hover:scale-105 hover:shadow-lg">
               Get Started
-            </button>
+            </Link>
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
               className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
@@ -161,10 +158,10 @@ const Navbar: React.FC<NavbarProps> = ({
                 <span>{link.name}</span>
               </Link>
             ))}
-            <button className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-all flex items-center justify-center space-x-2">
+            <Link href="/client/register" className="w-full mt-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition-all flex items-center justify-center space-x-2">
               <span>Get Started</span>
               <ArrowRight className="w-4 h-4" />
-            </button>
+            </Link>
           </div>
         </div>
       )}

@@ -60,7 +60,7 @@ const PortfolioSection = () => {
       : projects.filter((project) => project.category === activeFilter);
 
   return (
-    <section className="relative py-16 lg:py-24 overflow-hidden">
+    <section className="relative py-16 lg:py-24 overflow-hidden" id="portfolio">
       {/* Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-40 -right-40 w-80 h-80 bg-green-200 rounded-full opacity-20 blur-3xl animate-pulse"></div>

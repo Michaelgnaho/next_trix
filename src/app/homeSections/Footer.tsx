@@ -1,4 +1,6 @@
+import Image from "next/image";
 import React from "react";
+import Logo from "../../assets/logo.jpg";
 
 const FooterSection = () => {
   const currentYear = new Date().getFullYear();
@@ -38,9 +40,14 @@ const FooterSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Company Info */}
           <div>
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-              Net-Trix
-            </h3>
+            <Image
+              src={Logo}
+              alt="Net-Trix"
+              width={100}
+              height={30}
+              className="rounded-md mb-3"
+            />
+
             <p className="text-gray-600 dark:text-gray-300 mb-4">
               Transforming digital experiences with innovative solutions and
               cutting-edge technology.
